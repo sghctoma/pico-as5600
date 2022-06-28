@@ -55,8 +55,8 @@ enum as5600_power_mode {
 enum as5600_hysteresis {
     HYSTERESIS_OFF   = 0,
     HYSTERESIS_1_LSB = 1,
-    HYSTERESIS_2_LSB = 1,
-    HYSTERESIS_3_LSB = 1,
+    HYSTERESIS_2_LSB = 2,
+    HYSTERESIS_3_LSB = 3,
 };
 
 enum as5600_output { 
@@ -67,9 +67,9 @@ enum as5600_output {
 
 enum as5600_pwm_frequency {
     PWM_FREQUENCY_115Hz = 0,
-    PWM_FREQUENCY_230Hz = 0,
-    PWM_FREQUENCY_460Hz = 0,
-    PWM_FREQUENCY_920Hz = 0,
+    PWM_FREQUENCY_230Hz = 1,
+    PWM_FREQUENCY_460Hz = 2,
+    PWM_FREQUENCY_920Hz = 3,
 };
 
 enum as5600_slow_filter {
