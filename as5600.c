@@ -62,13 +62,13 @@ uint8_t _read_byte(i2c_inst_t *i2c, uint8_t addr) {
     return r;
 }
 
-uint16_t _read_word(i2c_inst_t *i2c, uint8_t addr) {
+uint16_t _read_halfword(i2c_inst_t *i2c, uint8_t addr) {
     uint8_t bh = _read_byte(i2c, addr);
     uint8_t bl = _read_byte(i2c, addr + 1);
     return (bh << 8) | bl;
 }
 
-uint16_t _read_word_auto_inc(i2c_inst_t *i2c, uint8_t addr) {
+uint16_t _read_halfword_auto_inc(i2c_inst_t *i2c, uint8_t addr) {
     if (!(addr == ADDRESS_RAW_ANGLE_U || addr == ADDRESS_ANGLE_U || addr == ADDRESS_MAGNITUDE_U)) {
         return 0xffff;
     }
@@ -110,7 +110,7 @@ uint16_t as5600_set_max_angle(i2c_inst_t *i2c, uint16_t angle) {
 }
 
 uint16_t as5600_get_max_angle(i2c_inst_t *i2c) {
-    return _read_word(i2c, ADDRESS_MANG_U);
+    return _read_halfword(i2c, ADDRESS_MANG_U);
 }
 
 uint16_t as5600_set_start_position(i2c_inst_t *i2c, uint16_t angle) {
@@ -124,7 +124,7 @@ uint16_t as5600_set_start_position(i2c_inst_t *i2c, uint16_t angle) {
 }
 
 uint16_t as5600_get_start_position(i2c_inst_t *i2c) {
-    return _read_word(i2c, ADDRESS_ZPOS_U);
+    return _read_halfword(i2c, ADDRESS_ZPOS_U);
 }
 
 uint16_t as5600_set_end_position(i2c_inst_t *i2c, uint16_t angle) {
@@ -138,18 +138,18 @@ uint16_t as5600_set_end_position(i2c_inst_t *i2c, uint16_t angle) {
 }
 
 uint16_t as5600_get_end_position(i2c_inst_t *i2c) {
-    return _read_word(i2c, ADDRESS_MPOS_U);
+    return _read_halfword(i2c, ADDRESS_MPOS_U);
 }
 
 // ----------------------------------------------------------------------------
 // Measurements
 
 uint16_t as5600_get_raw_angle(i2c_inst_t *i2c) {
-    return _read_word_auto_inc(i2c, ADDRESS_RAW_ANGLE_U);
+    return _read_halfword_auto_inc(i2c, ADDRESS_RAW_ANGLE_U);
 }
 
 uint16_t as5600_get_scaled_angle(i2c_inst_t *i2c) {
-    return _read_word_auto_inc(i2c, ADDRESS_ANGLE_U);
+    return _read_halfword_auto_inc(i2c, ADDRESS_ANGLE_U);
 }
 
 // ----------------------------------------------------------------------------
@@ -177,7 +177,7 @@ int as5600_get_agc(i2c_inst_t *i2c) {
 }
 
 uint16_t as5600_get_magnitude(i2c_inst_t *i2c) {
-    return _read_word_auto_inc(i2c, ADDRESS_MAGNITUDE_U);
+    return _read_halfword_auto_inc(i2c, ADDRESS_MAGNITUDE_U);
 }
 
 // ----------------------------------------------------------------------------
@@ -187,7 +187,7 @@ uint16_t as5600_get_magnitude(i2c_inst_t *i2c) {
 //      would allow getting multiple values with one CONF read.
 
 uint16_t as5600_get_conf(i2c_inst_t *i2c) {
-    return _read_word(i2c, ADDRESS_CONF_U);
+    return _read_halfword(i2c, ADDRESS_CONF_U);
 }
 
 void as5600_set_conf(i2c_inst_t *i2c, uint16_t conf) {
